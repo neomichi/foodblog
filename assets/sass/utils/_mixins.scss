@@ -1,0 +1,78 @@
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1rem;
+}
+
+$vw-viewport: 1440;
+$vw-enable: true;
+$vh-viewport: 864;
+$vh-enable: true;
+
+@function get-vw($size) {
+    @if ($vw-enable) {
+
+        @return $size /$vw-viewport* 100vw;
+    }
+
+    @return $size
+};
+
+
+@function get-vw($size) {
+    @if ($vw-enable) {
+
+        @return $size /$vw-viewport* 100vw;
+    }
+
+    @return $size
+};
+
+@function get-vh($size) {
+    @if ($vh-enable) {
+
+        @return $size /$vw-viewport* 100vh;
+    }
+
+    @return $size
+};
+
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+
+@mixin padding_size($width) {
+    padding-left: $width;
+    padding-right: $width;
+}
+
+
+
+
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {
+        @content
+    }
+
+    :-moz-placeholder {
+        @content
+    }
+
+    ::-moz-placeholder {
+        @content
+    }
+
+    :-ms-input-placeholder {
+        @content
+    }
+}

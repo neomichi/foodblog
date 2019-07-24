@@ -1,0 +1,107 @@
+@import "utils/libs";
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
+@import "utils/flex";
+@import "utils/animation";
+
+
+html {
+
+    height: 100%;
+
+    @media screen and (max-width: $desktopWidth) {
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: $tableWidth) {
+        font-size: 15px;
+    }
+
+    @media screen and (max-width: $phoneWidth) {
+        font-size: 14px;
+    }
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #282828;
+    font-family: 'Exo', sans-serif;
+    font-size: $mainFontSize;
+    font-weight: $mainFontWeight;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+
+    background-color: white;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+section,
+.section {
+    position: relative;
+
+}
+
+.wrapper {
+    margin: 0 auto;
+    @include padding_size(get-vw(150));
+    flex: 0 0 auto;
+
+    @media screen and (max-width: $fullhd) {
+        @include padding_size(get-vw(150));
+    }
+
+    @media screen and (max-width: $desktopWidth) {
+        @include padding_size(get-vw(140));
+    }
+
+    @media screen and (max-width: $smDesktopWidth) {
+        @include padding_size(get-vw(130));
+    }
+
+    @media screen and (max-width: $tableWidth) {
+        @include padding_size(get-vw(100));
+    }
+
+    @media screen and (max-width: $phoneWidth) {
+        @include padding_size(get-vw(80));
+    }
+
+    @media screen and (max-width: $smPhoneWidth) {
+        @include padding_size(get-vw(80));
+    }
+}
+
+nav {
+    display: block;
+}

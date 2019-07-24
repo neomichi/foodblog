@@ -87,3 +87,11 @@ sw.*
 # Mac OSX
 .DS_Store
 package-lock\.json
+
+static/img/
+
+static/fonts/
+
+assets/img/
+
+assets/fonts/

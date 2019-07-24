@@ -20,24 +20,23 @@ export default {
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
-  css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
-  plugins: [
-    '~plugins/vue-loading-overlay',
-    '~/plugins/vue-notifications',
+
+  styleResources: {
+    scss: ['./assets/sass/main.scss']
+  },
+  css: [
+    '~/assets/css/bootstrap.css',
+    '~/assets/css/style.css',
+    '~/assets/sass/main.scss'
   ],
-  
+
+  plugins: ['~plugins/vue-loading-overlay', '~/plugins/vue-notifications'],
+
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',    
-    ['nuxt-validate', {  lang: 'ru'  }],
-    'nuxt-fontawesome'
+    '@nuxtjs/pwa',
+    ['nuxt-validate', { lang: 'ru' }],      
   ],
   /*
    ** Axios module configuration
@@ -47,12 +46,24 @@ export default {
   /*
    ** Build configuration
    */
-  build: {    
+  build: {
     extractCSS: true,
     transpile: ['vue-notifications'],
     /*
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {},
+  minify: {
+    collapseWhitespace: false,
+    decodeEntities: true,
+    minifyCSS: true,
+    minifyJS: true,
+    processConditionalComments: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true,
+    trimCustomFragments: true,
+    useShortDoctype: true
   }
 }
