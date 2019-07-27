@@ -53,7 +53,7 @@
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright ©
             <script>
-  document.write(new Date().getFullYear())
+            document.write(new Date().getFullYear())
             </script>2019 All rights reserved 
             <i class="fa fa-heart-o" aria-hidden="true"></i> 
             <!--сыыр -->

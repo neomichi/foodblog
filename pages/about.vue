@@ -1,12 +1,6 @@
 <template>
-  <div>
-    <!-- Hero section -->
-    <section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
-      <div class="container">
-        <h2>About us</h2>
-      </div>
-    </section>
-    <!-- Hero section end -->
+  <div> 
+
 
     <!-- Search section -->
     <div class="search-form-section">
@@ -112,6 +106,7 @@
 
     <!-- Gallery section -->
  
+
     <div class="gallery">
       <div class="gallery-slider owl-carousel">
    <no-ssr>

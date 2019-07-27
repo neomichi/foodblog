@@ -5,6 +5,7 @@
             intensity.number="0.2"
             speedIn.number="1.4"
             speedOut.number="1.4"
+            
             ease="Expo.easeInOut"
             ref="slideshow"></vue-displacement-slideshow>
 </template>
@@ -12,8 +13,10 @@
     import VueDisplacementSlideshow from "vue-displacement-slideshow";
     
     export default {
+      
         components: {
             VueDisplacementSlideshow,
+            preserveAspectRatio:true,
         },
         computed: {
             images() {

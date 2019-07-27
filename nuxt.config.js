@@ -37,7 +37,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    ['nuxt-validate', { lang: 'ru' }],      
+    ['nuxt-validate', { lang: 'ru' }], 
+   
   ],
   /*
    ** Axios module configuration
@@ -55,7 +56,9 @@ export default {
      */
     extend(config, ctx) {}
   },
-  generate: {},
+  generate: {
+    minify: true,
+  },
   minify: {
     collapseWhitespace: false,
     decodeEntities: true,
