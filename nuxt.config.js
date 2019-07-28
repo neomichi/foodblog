@@ -43,6 +43,14 @@ export default {
     ['nuxt-validate', { lang: 'ru' }], 
    
   ],
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push(
+      { name: 'register', path: '/register', component: 'pages/login.vue' },
+      { name: 'login', path: '/login', component: 'pages/login.vue' }
+      )
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
