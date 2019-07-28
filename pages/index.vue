@@ -125,7 +125,7 @@ export default {
   data() {
     return {
       breadCrumb:'home',	  
-	}
+	} 
   },
   mounted() {	   
     this.$store.dispatch("UPDATE_BreadCrumb",this.breadCrumb);  
