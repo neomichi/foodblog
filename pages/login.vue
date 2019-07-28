@@ -5,23 +5,34 @@
       <div class="row">
         <div class="d-block mx-auto">
           <div class="form-container">
-            <form action="index.html" class="login-form">
-              <h1 class="form-title">Войти в аккаунт</h1>
+            <form action="#" class="login-form" @submit.prevent="onSubmit">
+              <h1 v-if="islogin" class="form-title">Войти в аккаунт</h1>
+              <h1 v-else class="form-title">Регистрация аккаунта</h1>
+              <inputtext title="email" descr="form_email" :maxlength="40" rules="required|min:3"></inputtext>
+              <inputtext
+                v-if="!islogin"
+                title="имя"
+                descr="form_firstname"
+                :maxlength="40"
+                rules="required|min:3"
+              ></inputtext>
+              <inputtext
+                type="password"
+                title="пароль"
+                descr="form_password"
+                :maxlength="40"
+                rules="required|min:3"
+              ></inputtext>
+              <inputtext
+                v-if="!islogin"
+                type="password"
+                title="Пароль(еще раз)"
+                descr="form_repassword"
+                :maxlength="40"
+                rules="required|min:3"
+              ></inputtext>
 
-              <div class="group">
-                <input type="text" required maxlength="40" />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Email</label>
-              </div>
-
-              <div class="group">
-                <input type="password" required maxlength="40" />
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Пароль</label>
-              </div>
-             <checkbox title="запомнить" ></checkbox>
+              <checkbox v-if="islogin" title="запомнить" id="remember"></checkbox>
 
               <input type="submit" class="logbtn" value="войти" />
 
@@ -30,7 +41,7 @@
                 <a href="#">регистрация</a>
               </div>
             </form>
-          </div>       
+          </div>
         </div>
       </div>
     </div>
@@ -38,24 +49,32 @@
   <!-- About section end -->
 </template>
 <script>
-import checkbox from "~/components/checkbox";
+import checkbox from '~/components/form/checkbox'
+import inputtext from '~/components/form/inputtext'
 export default {
-  components:{
-    'checkbox':checkbox
+  components: {
+    checkbox,
+    inputtext
   },
   data() {
     return {
-      loginform: {
-        email: '',
-        password: '',
-        moretime: false,
-      },
-      regform: {
-        email: '',
-        firstname: '',
-        repassword: '',
-        password: ''
+      islogin: true,
+      form: {
+        email: 'test@test.ru',
+        password: '123123',
+        remember: false,
+        firstname: 'иван',
+        repassword: ''
       }
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$validator.validateAll().then(result => {
+        console.log('true')
+        console.log(this.$validator)
+      })
+      console.log('onSubmit')
     }
   }
 }
@@ -89,130 +108,6 @@ export default {
   font-size: 24px;
   margin-bottom: 30px;
 }
-.group {
-  position: relative;
-  margin-bottom: 45px;
-  
-}
-
-input {
-  padding: 10px 10px 10px 5px;
-  display: block;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #757575;
-  &:focus {
-    outline: none;
-  }
-}
-
-label {
-  color: #999;
-
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-
-/* active state */
-
-input:focus ~ label,
-input:valid ~ label {
-  top: -20px;
-  font-size: 14px;
-}
-
-/* BOTTOM BARS ================================= */
-
-.bar {
-  position: relative;
-  display: block;
-}
-
-.bar:before,
-.bar:after {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: #f8e8ed;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-
-.bar:before {
-  left: 50%;
-}
-
-.bar:after {
-  right: 50%;
-}
-
-/* active state */
-
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-  width: 50%;
-}
-
-/* HIGHLIGHTER ================================== */
-
-.highlight {
-  position: absolute;
-  height: 60%;
-  width: 100px;
-  top: 25%;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* active state */
-
-input:focus ~ .highlight {
-  -webkit-animation: inputHighlighter 0.3s ease;
-  -moz-animation: inputHighlighter 0.3s ease;
-  animation: inputHighlighter 0.3s ease;
-}
-
-/* ANIMATIONS ================ */
-
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #f8cfdb;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
-@-moz-keyframes inputHighlighter {
-  from {
-    background: #f8cfdb;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-
-@keyframes inputHighlighter {
-  from {
-    background: #f8cfdb;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
 
 .logbtn {
   background-color: #ff2a6b;
@@ -222,20 +117,26 @@ input:focus ~ .highlight {
   margin-bottom: 30px;
   border-radius: 6 px;
   transition: 0.3s;
+  width: 100%;
+  border: 0;
+  padding: 10px 10px 10px 5px;
   &:hover {
     background-color: transparent;
     border: 2px solid #ff2a6b;
     color: #ff2a6b;
+    padding: 8px 8px 8px 3px;
   }
 }
 
 .label-checkbox {
-    cursor: pointer;
-    display: inline;
-    line-height: 1.25em;
-    vertical-align: top;   
-    padding-left: 1px;
+  cursor: pointer;
+  display: inline;
+  line-height: 1.25em;
+  vertical-align: top;
+  padding-left: 1px;
 }
 
-
+span.form-error {
+  font-size: 12px;
+}
 </style>

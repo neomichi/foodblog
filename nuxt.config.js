@@ -31,7 +31,10 @@ export default {
 
   plugins: ['~plugins/vue-loading-overlay', 
   '~/plugins/vue-notifications',
-  {src:'~/plugins/vue-displacement-slideshow',mode:'client'}],
+  '~/plugins/vee-validate.js',
+  {src:'~/plugins/vue-displacement-slideshow',mode:'client'},
+
+],
 
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
