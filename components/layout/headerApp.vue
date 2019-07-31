@@ -9,9 +9,12 @@
 					<a href="#"><i class="fa fa-dribbble"></i></a>
 					<a href="#"><i class="fa fa-behance"></i></a>
 					<a href="#"><i class="fa fa-linkedin"></i></a>
-
-
-				1
+<!-- 
+    <font-awesome-icon :icon="['fab', 'linkedin']"/>
+    <font-awesome-icon :icon="['fab', 'github']"/>
+    <font-awesome-icon :icon="['fab', 'facebook']"/>
+    <font-awesome-icon :icon="['fas', 'comment']"/> -->
+	
 				</div>
 				<div class="user-panel">
 					<a href="#">Register</a> / 

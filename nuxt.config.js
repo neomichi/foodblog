@@ -41,13 +41,23 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     ['nuxt-validate', { lang: 'ru' }], 
-   
+    ['nuxt-fontawesome', {
+      imports: [
+       {
+         set: '@fortawesome/free-solid-svg-icons',
+         icons: ['fas']
+       },
+       {
+         set:'@fortawesome/free-brands-svg-icons',
+         icons: ['fab']
+       }
+     ]}],     
   ],
   router: {
     extendRoutes(routes, resolve) {
       routes.push(
-      { name: 'register', path: '/register', component: 'pages/login.vue' },
-      { name: 'login', path: '/login', component: 'pages/login.vue' }
+      { name: 'register', path: '/register', component: '~/pages/login.vue' },
+      
       )
     },
   },

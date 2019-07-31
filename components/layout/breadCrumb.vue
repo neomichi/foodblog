@@ -18,10 +18,10 @@ export default {
   },
   computed: {
      crumbText() {     
-     return this.$store.state.ui.breadCrumb;
+     return this.$store.state.uiModule.breadCrumb;
 	 },
     hideBreadcrumb() {
-       return !helper.isNullOrEmpty(this.$store.state.ui.breadCrumb) ? true : false;
+       return !helper.isNullOrEmpty(this.$store.state.uiModule.breadCrumb) ? true : false;
     }
    }
 }

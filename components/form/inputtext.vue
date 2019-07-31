@@ -1,5 +1,6 @@
 <template>
   <div class="group">
+
     <input
       :type="type"
       required
@@ -9,14 +10,18 @@
       v-validate="rules"
       :id="descr"
       :name="descr"
+      :value="value"    
+      v-on:input="$emit('input', $event.target.value)"
     />
     <span class="highlight"></span>
     <span class="bar"></span>
-    <label :class="error">{{title}}</label>
+    <label :for="descr" :class="{'text-danger form-error':errors.has(descr)}">{{title}}</label>
+  
     <span
       :v-show="errors.has(descr)"
-      :class="{'text-danger form-error':errors.has(descr)}  "
+      :class="{'text-danger form-error':errors.has(descr)}"
     >{{ errors.first(descr) }}</span>
+
   </div>
 </template>
 <script>
@@ -26,20 +31,22 @@ export default {
     descr: { type: String, default: 'form_email' },
     rules: { type: String, default: 'required' },
     maxlength: { type: Number, default: 160 },
-    type:{ type: String, default: 'text' },
+    type: { type: String, default: 'text' },
+    value:{ type: String, default: '' },
   },
   data() {
     return {
       initialTitle: this.title,
-      error: "{'text-danger':errors.has('" + this.descr + "')}",
-      errorShow: '',
-      errorFirst: ''
-      
+     
+ 
     }
+  },
+  methods: {
+   
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .group {
   position: relative;
   margin-bottom: 45px;
@@ -162,5 +169,11 @@ input:focus ~ .highlight {
     width: 0;
     background: transparent;
   }
+}
+.form-error {
+  color: royalblue;
+}
+.label-error {
+  color: red;
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
   <div class="md-checkbox">
-    <input v-if="checked" :id="id" type="checkbox" checked="checked" />
-    <input v-else :id="id" type="checkbox" />
-    <label :for="id">{{initialTitle}}</label>
+    <input v-bind:checked="value" :id="id" type="checkbox" 
+    v-on:input="$emit('input',$event.target.checked)" />
+    <label :for="id">{{title}}</label>
+    
   </div>
 </template>
 <script>
@@ -10,13 +11,14 @@ export default {
   props: {
     title: String,
     id: { type: String, default: 'checkbox' },
-    checked: { type: Boolean, default: false }
+    value: { type: Boolean, default: false },
   },
   data() {
     return {
-      initialTitle: this.title
+      
     }
-  }
+   },
+ 
 }
 </script>
 <style lang="scss" scoped>
@@ -90,8 +92,8 @@ $md-checkbox-label-padding: 0.75em;
 
     &:checked {
       + label:before {
-        background:#ff2a6b;
-        border: 0px;    
+        background: #ff2a6b;
+        border: 0px;
       }
       + label:after {
         $md-checkmark-size: $md-checkbox-size - 2 * $md-checkbox-padding;

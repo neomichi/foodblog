@@ -1,15 +1,9 @@
-import Vuex from 'vuex';
-import uiModule from './uiModule';
+export const state = () => ({
+  counter: 0
+})
 
-
-const createStore = () => {
-  return new Vuex.Store({
-    namespaced: true,
-    modules: {
-      ui: uiModule,
-     
-    }
-  });
-};
-
-export default createStore
+export const mutations = {
+  increment (state) {
+    state.counter++
+  }
+}

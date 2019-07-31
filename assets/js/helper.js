@@ -52,8 +52,12 @@ const helper = {
         tags.forEach(function (el) {
             var text=el.getAttribute('data-setbg');
             el.style.backgroundImage = 'url(' + text  + ')';
-        });
-    }
+        })},
+
+       
+    
+
+    
 }
  
 export default helper
