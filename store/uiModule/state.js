@@ -2,7 +2,7 @@ export default () => ({
   
     breadCrumb: '',
     message: [],
-    notification: { title: '', text: '1', type: '' },
+    notification: { title: '', text: '', type: '' },
     loading: false
   
 })

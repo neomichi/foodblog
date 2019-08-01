@@ -52,7 +52,17 @@ export default {
          icons: ['fab']
        }
      ]}],     
+     ['@nuxtjs/proxy', {
+      proxy: {
+        // Simple proxy
+        '/api': 'http://localhost:5000',
+      }
+    }]
   ],
+  proxy: {
+    // proxy for server api
+   '/api': 'http://localhost:5000',
+ },
   router: {
     extendRoutes(routes, resolve) {
       routes.push(

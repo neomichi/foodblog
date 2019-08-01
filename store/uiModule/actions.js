@@ -1,3 +1,4 @@
+
 export default {
   UPDATE_BreadCrumb: ({ commit }, obj) => {
     commit('UPDATE_UI_BREADCRUMB', obj)
@@ -6,7 +7,11 @@ export default {
   UPDATE_NOTIFICATION ({ commit }, obj) {
     commit('UPDATE_UI_NOTIFICATION', obj)
   },
-  
+
+  CLEAR_NOTIFICATION ({ commit }) {
+    commit('CLEAR_UI_NOTIFICATION')
+  },
+
   HIDE_LOADING ({ commit })  {
     commit('SHOW_HIDE_UI_LOADING', false)
   },

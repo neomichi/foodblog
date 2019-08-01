@@ -31,8 +31,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-      
+        </div>     
     </div>
 </section>
 <!-- About section end -->
@@ -41,17 +40,13 @@
 import checkbox from '~/components/form/checkbox'
 import inputtext from '~/components/form/inputtext'
 
-
-
-
 export default {
     components: {
         checkbox,
-        inputtext,
-      
+        inputtext
     },
     data() {
-        return {           
+        return {
             form: {
                 email: 'test@test.ru',
                 password: '123123',
@@ -59,15 +54,12 @@ export default {
                 firstname: 'иван',
                 repassword: ''
             }
-
         }
     },
     methods: {
         onSubmit() {
-            
-            this.$store.dispatch("uiModule/SHOW_LOADING");
             console.log(this.$store)
-            
+
             this.$validator.validateAll().then(result => {
                 if (result) {
                     let formData = ({}, this.form)
@@ -82,14 +74,13 @@ export default {
                         userData.lastname = formData.lastname
                     }
 
-                    console.log(userData)
-                    //let method=this.isLoginForm()?'LOGIN_USER':'REG_USER';
+                    let url = this.isLoginForm() ?
+                        'userModule/LOGIN_USER' :
+                        'userModule/REG_USER'
 
-                    // console.log(regData);
+                    console.log(url)
 
-                    //  this.$store.dispatch(method, userData).then(res => {
-                    //     console.log(res)
-                    //  })
+                    var cb = this.$store.dispatch(url, userData)
                 }
             })
             console.log('onSubmit')
@@ -102,6 +93,8 @@ export default {
             return this.$router.push({ name: routeName })
         },
       
+    
+        
     }
 }
 </script>
