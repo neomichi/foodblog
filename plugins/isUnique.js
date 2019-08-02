@@ -1,5 +1,8 @@
+import Vue from 'vue';
 import axios from 'axios'; // great ajax library.
 import { Validator } from 'vee-validate';
+
+Vue.use(Validator)
 
 const isUnique = (value) => {
   return axios.post('/api/validate/email', { email: value }).then((response) => {

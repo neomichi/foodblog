@@ -31,7 +31,8 @@ export default {
 
   plugins: ['~plugins/vue-loading-overlay', 
   '~/plugins/vue-notifications',
-  '~/plugins/vee-validate.js',
+  '~/plugins/vee-validate',
+  // '~/plugins/isUnique',
   {src:'~/plugins/vue-displacement-slideshow',mode:'client'},
 
 ],
@@ -64,12 +65,20 @@ export default {
    '/api': 'http://localhost:5000',
  },
   router: {
+    middleware: ['routeHandler'],
     extendRoutes(routes, resolve) {
       routes.push(
       { name: 'register', path: '/register', component: '~/pages/login.vue' },
       
       )
     },
+    routes: [
+      {
+        name: 'index',
+        path: '/',
+        component: 'pages/index.vue'
+      },
+    ]
   },
   /*
    ** Axios module configuration

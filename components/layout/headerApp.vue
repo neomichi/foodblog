@@ -24,9 +24,9 @@
 		</div>
 		<div class="header-bottom">
 			<div class="container">
-				<a href="index.html" class="site-logo">
-					<img src="img/logo.png" alt="">
-				</a>
+				<nuxt-link :to="{name:'index'}" class="site-logo">
+					<img src="img/logo.png" alt="logo">
+				</nuxt-link>
 				<div class="nav-switch">
 					<i class="fa fa-bars"></i>
 				</div>
