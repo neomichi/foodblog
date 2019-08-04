@@ -41,6 +41,7 @@ import checkbox from '~/components/form/checkbox'
 import inputtext from '~/components/form/inputtext'
 import axios from 'axios';
 export default {
+    layout: "main",
     components: {
         checkbox,
         inputtext

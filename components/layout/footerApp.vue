@@ -49,7 +49,7 @@
               <a href="#">Contact</a>
             </li>
             <li>
-              <nuxt-link :to="{name:'admin'}" tag="a" >Admin</nuxt-link>
+              <nuxt-link :to="{name:'admin'}" >Admin</nuxt-link>
             </li>
           </ul>
           <p class="copyright">

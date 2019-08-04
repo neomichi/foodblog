@@ -104,13 +104,13 @@
 
     <!-- Gallery section -->
     <div class="gallery">
-      <div class="gallery-slider owl-carousel">
-        <div class="gs-item set-bg" data-setbg="img/instagram/1.jpg"></div>
-        <div class="gs-item set-bg" data-setbg="img/instagram/2.jpg"></div>
-        <div class="gs-item set-bg" data-setbg="img/instagram/3.jpg"></div>
-        <div class="gs-item set-bg" data-setbg="img/instagram/4.jpg"></div>
-        <div class="gs-item set-bg" data-setbg="img/instagram/5.jpg"></div>
-        <div class="gs-item set-bg" data-setbg="img/instagram/6.jpg"></div>
+      <div class="gallery-slider owl-carousel main_flex__nowrap">       
+        <div class="gallery-img"><img src="~assets/img/instagram/1.jpg"/></div>
+        <div class="gallery-img"><img src="~assets/img/instagram/2.jpg"/></div>
+        <div class="gallery-img"><img src="~assets/img/instagram/3.jpg"/></div>
+        <div class="gallery-img"><img src="~assets/img/instagram/4.jpg"/></div>
+        <div class="gallery-img"><img src="~assets/img/instagram/5.jpg"/></div>
+        <div class="gallery-img"><img src="~assets/img/instagram/6.jpg"/></div>
       </div>
     </div>
     <!-- Gallery section end -->
@@ -121,7 +121,13 @@
 
 
 export default {
- 
+   asyncData (context) {
+    // called every time before loading the component
+    // as the name said, it can be async
+    // Also, the returned object will be merged with your data object
+    return { name: 'main' }
+  },
+    layout: "main",
   data() {
     return {
       breadCrumb:'home',	  
@@ -134,5 +140,11 @@ export default {
 </script>
 
 <style>
-
+.gs-item.set-bg {
+  max-width: 400px;
+  width: 400px;
+}
+.gallery-slider gs-item {
+   width: 401px;
+}
 </style>

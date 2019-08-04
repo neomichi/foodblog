@@ -32,6 +32,7 @@ export default {
   plugins: ['~plugins/vue-loading-overlay', 
   '~/plugins/vue-notifications',
   '~/plugins/vee-validate',
+  {src:'~/plugins/vue-carousel',mode:'client'},
   // '~/plugins/isUnique',
   {src:'~/plugins/vue-displacement-slideshow',mode:'client'},
 

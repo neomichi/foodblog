@@ -25,6 +25,7 @@
     "nuxt": "^2.8.1",
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-validate": "^1.0.1",
+    "vue-carousel": "^0.18.0",
     "vue-displacement-slideshow": "^2.0.2",
     "vue-loading-overlay": "^3.2.0",
     "vue-no-ssr": "^1.1.1",

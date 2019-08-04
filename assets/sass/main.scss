@@ -734,8 +734,14 @@ ul, ol {
   Gallery Section
 ---------------------*/
 
-.gallery-slider .gs-item {
-  height: 320px;
+.gallery-slider .gs-item img {
+  max-height: 100%;
+  max-width: 100%;
+  
+}
+
+.gallery-img {
+  width: 200px;
 }
 
 /*------------------
