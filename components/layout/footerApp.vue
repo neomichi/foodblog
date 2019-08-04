@@ -48,6 +48,9 @@
             <li>
               <a href="#">Contact</a>
             </li>
+            <li>
+              <nuxt-link :to="{name:'admin'}" tag="a" >Admin</nuxt-link>
+            </li>
           </ul>
           <p class="copyright">
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

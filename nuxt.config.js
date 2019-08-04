@@ -43,6 +43,7 @@ export default {
     '@nuxtjs/pwa',
     ['nuxt-validate', { lang: 'ru' }], 
     ['nuxt-fontawesome', {
+      component: 'fa',
       imports: [
        {
          set: '@fortawesome/free-solid-svg-icons',
@@ -65,20 +66,25 @@ export default {
    '/api': 'http://localhost:5000',
  },
   router: {
-    middleware: ['routeHandler'],
-    extendRoutes(routes, resolve) {
+    //middleware: ['routeHandler'],
+    extendRoutes (routes, resolve) {
+   
       routes.push(
-      { name: 'register', path: '/register', component: '~/pages/login.vue' },
-      
+        { name: 'register', path: '/register', component: 'pages/login.vue' },
+        { name: 'adminIndex', path: '/admin/index', component: 'pages/admin/index.vue' },
+        { name: 'adminRecipies', path: '/admin/recipies', component: resolve(__dirname, 'pages/admin/recipies.vue')},
+        { name: 'custom', path: '*',  component: resolve(__dirname, 'pages/404.vue') }
       )
-    },
-    routes: [
-      {
-        name: 'index',
-        path: '/',
-        component: 'pages/index.vue'
-      },
-    ]
+    }
+    
+    // routes: [
+    //   {
+    //     name: 'index',
+    //     path: '/',
+    //     component: 'pages/index.vue'
+    //   },
+    // ]
+  
   },
   /*
    ** Axios module configuration

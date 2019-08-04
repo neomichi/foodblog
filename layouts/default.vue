@@ -2,7 +2,10 @@
 <div>
     <header-app></header-app>
     <bread-crumb></bread-crumb>
-    <nuxt />
+    <nuxt v-if="!$slots.default"/>
+        <nuxt />
+    <slot/>
+
     <footer-app></footer-app>
     <loading :active.sync="isLoading" color="#020304" :can-cancel="false" :on-cancel="onCancel" :is-full-page="fullPage"></loading>
     <notifications group="error" type="error" /> {{showNotification}}

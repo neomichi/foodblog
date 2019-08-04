@@ -128,7 +128,7 @@ export default {
 	} 
   },
   mounted() {	   
-    this.$store.dispatch("UPDATE_BreadCrumb",this.breadCrumb);  
+    this.$store.dispatch("uiModule/UPDATE_BreadCrumb",this.breadCrumb);  
   }
 }
 </script>

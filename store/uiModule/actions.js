@@ -16,8 +16,7 @@ export default {
     commit('SHOW_HIDE_UI_LOADING', false)
   },
 
-  SHOW_LOADING ({ commit })  {
-    console.log('SHOW_HIDE_UI_LOADING');
+  SHOW_LOADING ({ commit })  {    
     commit('SHOW_HIDE_UI_LOADING', true)
   }
 };
