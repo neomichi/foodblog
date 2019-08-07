@@ -35,7 +35,7 @@ $md-checkbox-border-radius: 0.125em;
 $md-checkmark-width: 0.125em;
 $md-checkmark-color: #fff;
 $md-checkbox-label-padding: 0.75em;
-
+$md-color:#ff2a6b;
 .md-checkbox {
   position: relative;
   margin: $md-checkbox-margin;
@@ -92,7 +92,7 @@ $md-checkbox-label-padding: 0.75em;
 
     &:checked {
       + label:before {
-        background: #ff2a6b;
+        background: $md-color;
         border: 0px;
       }
       + label:after {

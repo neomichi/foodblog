@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="col-8">
+      <div class="col-12 col-sm-11 col-md-8">
         <nuxt />
       </div>
     </div>

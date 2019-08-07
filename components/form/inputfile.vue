@@ -41,26 +41,24 @@ export default {
 }
 
 </script>
-<style scoped>
+<style lang="scss" scoped>
+$md-color:#ff2a6b;
 .example-2 .btn-tertiary {
-    color: #555;
+    color: white;
     padding: 0;
     line-height: 40px;
     width: 200px;
     display: block;
-    border: 1px solid #555;
-    transition: 0.3s;
-    opacity: .7;
+    border: 2px solid $md-color;
+    transition: 0.5s;  
+    background: $md-color;
 }
 
-.example-2:hover .btn-tertiary:hover {
-    opacity: .99;
-}
 
 .example-2 .btn-tertiary:hover,
 .example-2 .btn-tertiary:focus {
     color: #888;
-    border-color: #888
+    border-color: $md-color
 }
 
 .example-2 .input-file {
@@ -102,6 +100,7 @@ export default {
     box-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
     background-color: #f1f1f1;
     color: #ecf0f1;
+    
     transition: background-color .3s;
 }
 
@@ -140,5 +139,12 @@ export default {
     width: 120%;
     padding-top: 120%;
     transition: width .2s ease-out, padding-top .2s ease-out;
+}
+.btn.red {
+  background-color: $md-color;
+}
+
+.btn.red:hover, .btn.red:focus {
+  background-color: #c0392b;
 }
 </style>
