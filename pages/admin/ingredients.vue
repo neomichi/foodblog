@@ -24,13 +24,16 @@
                 <td>{{ingredient.url}}</td>
                 <td>{{ingredient.description}}</td>
                 <td>{{ingredient.visible}}</td>     
-                <td></td>
+                <td>
+                
+                    <nuxt-link :to="{ name: 'admin-editIngredient'}" class="btn btn-info" >Изменить</nuxt-link>
+                </td>
                 <td></td>
             </tr>
         </tbody>
     </table>
     <div>
-        <nuxt-link :to="{ name: 'admin-addIngredient'}" class="btn btn-info" >Создать</nuxt-link>
+        <nuxt-link :to="{ name: 'admin-addIngredient' }" class="btn btn-info" >Создать</nuxt-link>
     </div>
 </div>
 </template>

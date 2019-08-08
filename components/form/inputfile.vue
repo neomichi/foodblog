@@ -1,7 +1,7 @@
 <template>
 <div class="example-2">
     <div class="form-group">
-        <input type="file" :name="inputFileId" :id="inputFileId" class="input-file" v-on:change="getFile()">
+        <input type="file" :name="inputFileId" :id="inputFileId" class="input-file" v-on:change="gg()" multiple="multiple">
         <label :for="inputFileId" class="btn btn-tertiary js-labelFile">
  
       <span class="js-fileName">Загрузить файл</span>
@@ -13,7 +13,8 @@
 export default {
     props: {
         imageId: { type: String, default: 'default' },
-        inputFileId: { type: String, default: 'fileUpload' }
+        inputFileId: { type: String, default: 'fileUpload' },
+        count: { type: Number, default: 1 }
     },
     data() {
         return {
@@ -21,25 +22,85 @@ export default {
         }
     },
     methods: {
-        getFile() {           
+        gg() {
+            let byteArray = [];
+
 
             let fileInput = document.getElementById(this.inputFileId);
-            let uploadImg = document.getElementById(this.imageId);
-            let file = fileInput.files[0];
-            let imageType = /image.*/;
 
-            if (file.type.match(imageType)) {
-                let reader = new FileReader();
-
-                reader.onload = function(e) {
-                    uploadImg.src =reader.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        },      
+            const files = fileInput.files;
+           // changeCharsInFiles(files)
+            console.log('----');
+               let promises = [];
+    for (let file of files) {
+        let filePromise = new Promise(resolve => {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+        });
+        promises.push(filePromise);
     }
+    Promise.all(promises).then(fileContents => {
+
+      this.$emit('getArray', fileContents)
+    
+    });
+
+
+
+            // const filtered = Object.keys(files)
+            // .filter(file=>file.type.match(imageType));
+
+            // for (var i = 0; i < files.length; i++) { 
+            //         let file = files[i];
+            //         byteArray.push(new Promise(function (resolve, reject) {
+            //              let reader = new FileReader();
+            //              reader.onload = function(e) {
+            //                  resolve(reader.result);
+            //              }
+            //         }));
+            // }
+            // // fileInput = fileInput
+            // //     .filter(file => file.type.match(imageType));
+            // let filesNum = fileInput.length;
+
+            // if (this.count > filesNum) filesNum = this.count;
+            // for (var i = 0; i < filesNum; i++) {
+            //     let file = fileInput.files[i];
+            //     let imageType = /image.*/;
+
+            //     if (file.type.match(imageType)) {
+            //         let reader = new FileReader();
+            //         reader.onload = function(e) {
+            //var dataURL = reader.result;
+            //         }
+            //         reader.readAsDataURL(file);
+            //     }
+            // }
+         
+          
+
+        },
+    }
+ 
 }
 
+function changeCharsInFiles(file_list) {
+    let promises = [];
+    for (let file of file_list) {
+        let filePromise = new Promise(resolve => {
+            let reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => resolve(reader.result);
+        });
+        promises.push(filePromise);
+    }
+    Promise.all(promises).then(fileContents => {
+
+      this.$emit('getArray', fileContents)
+    
+    });
+}
 </script>
 <style lang="scss" scoped>
 $md-color:#ff2a6b;
@@ -50,10 +111,9 @@ $md-color:#ff2a6b;
     width: 200px;
     display: block;
     border: 2px solid $md-color;
-    transition: 0.5s;  
+    transition: 0.5s;
     background: $md-color;
 }
-
 
 .example-2 .btn-tertiary:hover,
 .example-2 .btn-tertiary:focus {
@@ -100,7 +160,6 @@ $md-color:#ff2a6b;
     box-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
     background-color: #f1f1f1;
     color: #ecf0f1;
-    
     transition: background-color .3s;
 }
 
@@ -140,11 +199,13 @@ $md-color:#ff2a6b;
     padding-top: 120%;
     transition: width .2s ease-out, padding-top .2s ease-out;
 }
+
 .btn.red {
-  background-color: $md-color;
+    background-color: $md-color;
 }
 
-.btn.red:hover, .btn.red:focus {
-  background-color: #c0392b;
+.btn.red:hover,
+.btn.red:focus {
+    background-color: #c0392b;
 }
 </style>
