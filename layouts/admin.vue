@@ -49,8 +49,17 @@
         <nuxt />
       </div>
     </div>
+    <notificationInit/>
   </div>
 </template>
+<script>
+import notificationInit from '~/components/layout/notificationInit.vue'
+export default {   
+    components: { 
+      notificationInit
+    }
+}
+</script>
 <style scoped>
 body {
     overflow-x: hidden;
