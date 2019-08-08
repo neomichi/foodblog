@@ -72,6 +72,7 @@ export default {
    
       routes.push(
         { name: 'register', path: '/register', component: 'pages/login.vue' },
+        { name:  'admin-editIngredient',path:'/admin/editIngredient',component:'pages/admin/addIngredient.vue'},
         { name: 'adminIndex', path: '/admin/index', component: 'pages/admin/index.vue' },
         { name: 'adminRecipies', path: '/admin/recipies', component: resolve(__dirname, 'pages/admin/recipies.vue')},
         { name: 'custom', path: '*',  component: resolve(__dirname, 'pages/404.vue') }

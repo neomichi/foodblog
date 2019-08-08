@@ -1,11 +1,12 @@
 <template>
-<button type="submit"  onclick="$emit('button',$event.target.button)" :class="color" ><span>{{title}}</span></button>
+<button :type="buttontype" onclick="$emit('button',$event.target.button)" :class="color" ><span>{{title}}</span></button>
 </template>
 <script>
 export default {
   props: {
     title: { type: String, default: 'this is button' },
-    color: {type:String, default:'btn red'}
+    color: {type:String, default:'btn red'},
+    buttontype: {type:String, default:'submit'}
   },
   data() {
     return {
@@ -14,6 +15,7 @@ export default {
    }, 
 }
 </script>
+//https://material.io
 <style lang="scss" scoped>
 $md-color:#ff2a6b;
 .btn {

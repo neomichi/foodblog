@@ -21,7 +21,9 @@ export default {
  
 }
 </script>
+
 <style lang="scss" scoped>
+////https://material.io
 $md-checkbox-checked-color: rgb(51, 122, 183);
 $md-checkbox-border-color: rgba(0, 0, 0, 0.54);
 $md-checkbox-border-color-disabled: rgba(131, 48, 226, 0.26);
@@ -75,9 +77,7 @@ $md-color:#ff2a6b;
       transition: background 0.3s;
     }
 
-    &:after {
-      // checkmark
-    }
+
   }
 
   input[type='checkbox'] {
