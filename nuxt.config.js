@@ -24,61 +24,81 @@ export default {
   styleResources: {
     scss: ['./assets/sass/main.scss']
   },
-  css: [
-    '~/assets/css/bootstrap.css',    
-    '~/assets/sass/main.scss'
+  css: ['~/assets/css/bootstrap.css', '~/assets/sass/main.scss'],
+
+  plugins: [
+    '~plugins/vue-loading-overlay',
+    '~/plugins/vue-notifications',
+    '~/plugins/vee-validate',
+    { src: '~/plugins/vue-carousel', mode: 'client' },
+    { src: '~/plugins/vue-lazyload', mode: 'client' },
+    { src: '~/plugins/vue-displacement-slideshow', mode: 'client' }
   ],
-
-  plugins: ['~plugins/vue-loading-overlay', 
-  '~/plugins/vue-notifications',
-  '~/plugins/vee-validate',
-  {src:'~/plugins/vue-carousel',mode:'client'},
-  // '~/plugins/isUnique',
-  {src:'~/plugins/vue-displacement-slideshow',mode:'client'},
-
-],
 
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    ['nuxt-validate', { lang: 'ru' }], 
-    ['nuxt-fontawesome', {
-      component: 'fa',
-      imports: [
-       {
-         set: '@fortawesome/free-solid-svg-icons',
-         icons: ['fas']
-       },
-       {
-         set:'@fortawesome/free-brands-svg-icons',
-         icons: ['fab']
-       }
-     ]}],     
-     ['@nuxtjs/proxy', {
-      proxy: {
-        // Simple proxy
-        '/api': 'http://localhost:5000',
+    ['nuxt-validate', { lang: 'ru' }],
+    [
+      'nuxt-fontawesome',
+      {
+        component: 'fa',
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas']
+          },
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['fab']
+          }
+        ]
       }
-    }]
+    ],
+    [
+      '@nuxtjs/proxy',
+      {
+        proxy: {
+          // Simple proxy
+          '/api': 'http://localhost:5000'
+        }
+      }
+    ]
   ],
   proxy: {
     // proxy for server api
-   '/api': 'http://localhost:5000',
- },
+    '/api': 'http://localhost:5000'
+  },
   router: {
     //middleware: ['routeHandler'],
-    extendRoutes (routes, resolve) {
-   
+    extendRoutes(routes, resolve) {
       routes.push(
         { name: 'register', path: '/register', component: 'pages/login.vue' },
-        { name:  'admin-editIngredient',path:'/admin/editIngredient',component:'pages/admin/addIngredient.vue'},
-        { name: 'adminIndex', path: '/admin/index', component: 'pages/admin/index.vue' },
-        { name: 'adminRecipies', path: '/admin/recipies', component: resolve(__dirname, 'pages/admin/recipies.vue')},
-        { name: 'custom', path: '*',  component: resolve(__dirname, 'pages/404.vue') }
+        {
+          name: 'admin-editIngredient',
+          path: '/admin/editIngredient/:id',
+          component: 'pages/admin/addIngredient.vue',
+          props: true
+        },
+        {
+          name: 'adminIndex',
+          path: '/admin/index',
+          component: 'pages/admin/index.vue'
+        },
+        {
+          name: 'adminRecipies',
+          path: '/admin/recipies',
+          component: resolve(__dirname, 'pages/admin/recipies.vue')
+        },
+        {
+          name: 'custom',
+          path: '*',
+          component: resolve(__dirname, 'pages/404.vue')
+        }
       )
     }
-    
+
     // routes: [
     //   {
     //     name: 'index',
@@ -86,7 +106,6 @@ export default {
     //     component: 'pages/index.vue'
     //   },
     // ]
-  
   },
   /*
    ** Axios module configuration
@@ -99,14 +118,34 @@ export default {
   build: {
     extractCSS: true,
     transpile: ['vue-notifications'],
+    vendor: [
+      'axios',
+      
+     //'~plugins/my-lib.js'
+    ],
+    extend (config, { isClient }) {
+      config.module.rules.push({
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 1024*512,
+            }
+          }
+        ],
+        exclude: /(node_modules)/
+      }); 
+    },
     /*
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
   },
   generate: {
-    minify: true,
+ 
   },
+  minify: true,
   minify: {
     collapseWhitespace: false,
     decodeEntities: true,

@@ -1,39 +1,40 @@
 <template>
-<div>
-    
-    <table class="table table-bordered table-hover ">
-        <thead>
-            <tr>
-                <th>Id</th> 
-                <th>Название</th>
-                <th>Url</th>
-                <th>Иконка</th>
-                <th>Описание</th>
-                <th>Видимось</th>                
-                <th>Изменить</th>               
-                <th>Удалить</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="ingredient in ingredients" :key="ingredient.id">
-                <td>
-                    <div class="imgContainer"><img :src="ingredient.icon" alt="avatar" class="img_max" /></div>
-                </td>
-                  <td>{{ingredient.id}}</td>
-                <td>{{ingredient.title}}</td>               
-                <td>{{ingredient.url}}</td>
-                <td>{{ingredient.description}}</td>
-                <td>{{ingredient.visible}}</td>     
-                <td>
-                
-                    <nuxt-link :to="{ name: 'admin-editIngredient'}" class="btn btn-info" >Изменить</nuxt-link>
-                </td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-    <div>
-        <nuxt-link :to="{ name: 'admin-addIngredient' }" class="btn btn-info" >Создать</nuxt-link>
+<div class="container-fluid">
+    <div class="row">
+        <div class="form">
+
+            <table class="table table-bordered table-hover ">
+                <thead>
+                    <tr>
+
+                        <th>Название</th>
+                        <th>Url</th>
+                        <th>Описание</th>
+                        <th>Видимось</th>
+                        <th>Изменить</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="ingredient in ingredients" :key="ingredient.id">
+                        <td>{{ingredient.title}}</td>
+                        <td>{{ingredient.url}}</td>
+                        <td>{{ingredient.description}}</td>
+                        <td>{{ingredient.visible}}</td>
+                        <td>
+
+                            <nuxt-link :to="{ name: 'admin-editIngredient',params:{id:ingredient.id}}" class="btn btn-info">Изменить</nuxt-link>
+                        </td>
+                        <td>
+                            <nuxt-link :to="{ name: 'admin-editIngredient'}" class="btn btn-danger">Удалить</nuxt-link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <nuxt-link :to="{ name: 'admin-addIngredient' }" class="btn btn-info">Создать</nuxt-link>
+            </div>
+        </div>
     </div>
 </div>
 </template>
@@ -47,7 +48,9 @@ export default {
         }
     },
     computed: {
+        getData() {
 
+        }
     },
     methods: {
         GetIngredients() {
@@ -56,8 +59,9 @@ export default {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
-            }).then(ingredient => {
-                this.ingredients = ingredients.data;
+            }).then(result => {
+                console.log(result.data);
+                this.ingredients = result.data;
             })
         }
     },
@@ -69,6 +73,15 @@ export default {
 }
 </script>
 <style scoped>
+.form {
+    border: 1px solid rgb(219, 219, 219);
+    padding: 30px 15px;
+    border-radius: 3px;
+    background: #fff;
+    margin-top: 30px;
+    width: 100%;
+}
+
 .imgContainer {
     width: 64px;
 }

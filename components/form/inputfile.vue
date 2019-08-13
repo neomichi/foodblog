@@ -1,7 +1,9 @@
 <template>
 <div class="example-2">
     <div class="form-group">
-        <input type="file" :name="inputFileId" :id="inputFileId" class="input-file" v-on:change="gg()" multiple="multiple">
+        <input type="file" :name="inputFileId" :id="inputFileId" class="input-file" v-on:change="getImageToBase64()" v-if="count>1" multiple="multiple">
+        <input type="file" :name="inputFileId" :id="inputFileId" class="input-file" v-on:change="getImageToBase64()" v-else>
+
         <label :for="inputFileId" class="btn btn-tertiary js-labelFile">
  
       <span class="js-fileName">Загрузить файл</span>
@@ -22,29 +24,29 @@ export default {
         }
     },
     methods: {
-        gg() {
+        getImageToBase64() {
             let byteArray = [];
 
 
             let fileInput = document.getElementById(this.inputFileId);
 
             const files = fileInput.files;
-           // changeCharsInFiles(files)
-            console.log('----');
-               let promises = [];
-    for (let file of files) {
-        let filePromise = new Promise(resolve => {
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-        });
-        promises.push(filePromise);
-    }
-    Promise.all(promises).then(fileContents => {
+            // changeCharsInFiles(files)
 
-      this.$emit('getArray', fileContents)
-    
-    });
+            let promises = [];
+            for (let file of files) {
+                let filePromise = new Promise(resolve => {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                });
+                promises.push(filePromise);
+            }
+            Promise.all(promises).then(fileContents => {
+                
+                this.$emit('getArray', fileContents)
+
+            });
 
 
 
@@ -77,12 +79,12 @@ export default {
             //         reader.readAsDataURL(file);
             //     }
             // }
-         
-          
+
+
 
         },
     }
- 
+
 }
 
 function changeCharsInFiles(file_list) {
@@ -97,8 +99,8 @@ function changeCharsInFiles(file_list) {
     }
     Promise.all(promises).then(fileContents => {
 
-      this.$emit('getArray', fileContents)
-    
+        this.$emit('getArray', fileContents)
+
     });
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
-<button :type="buttontype" onclick="$emit('button',$event.target.button)" :class="color" ><span>{{title}}</span></button>
+<button :type="buttontype"  :class="color" ><span>{{title}}</span></button>
+<!-- onclick="$emit('button',$event.target.button)" -->
 </template>
 <script>
 export default {

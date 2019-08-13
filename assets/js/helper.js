@@ -54,8 +54,11 @@ const helper = {
             el.style.backgroundImage = 'url(' + text  + ')';
         })},
 
-       
-    
+        GetDifferensTwoArray(arrayA,arrayB) {
+        return arrayA
+        .filter(x => !arrayB.includes(x))
+        .concat(arrayB.filter(x => !arrayA.includes(x))); 
+        }
 
     
 }
